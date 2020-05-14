@@ -19,12 +19,38 @@ export const setAccounts = accounts => {
     }
   }
 };
+
 export const addAccount = (name, balance) => {
   return {
     type: 'ADD_ACCOUNT',
     payload: {
       name, balance
 
+    }
+  }
+};
+export const addmoney2 = ( accountId, amount) => {
+  return {
+    type: 'add2_2',
+    payload: {
+      accountId, type: "deposit", amount, name: "Desposited amount"
+    }
+  }
+};
+export const widraw2 = ( accountId, amount) => {
+  return {
+    type: 'WITHDRAW_2',
+    payload: {
+      accountId, type: "withraw", amount, name: "withraw amount"
+    }
+  }
+};
+export const editAccount = (name, accountId) => {
+  return {
+    type: 'EDIT_ACCOUNT',
+    payload: {
+      name,
+      accountId
     }
   }
 };
@@ -46,11 +72,11 @@ export const widhraw = (accountid, balance) => {
 
   };
 };
-export const addMoney = (_id, amount) => {
+export const addMoney = (id, amount) => {
   return {
     type: 'ADD_MONEY',
     payload: {
-      _id, amount
+      amount, id
 
     }
 

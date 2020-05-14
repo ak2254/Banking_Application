@@ -50,13 +50,19 @@ const transreducer = (state, action) => {
     switch (action.type) {
         case 'SET_TRANSACTIONS':
             return action.payload;
+        case 'add2_2':
+            var addTrans2 = {
+                "_id": state.transactions.length, "accountId": action.payload['accountId'], "type": action.payload['type'], "amount": action.payload['amount'], "name": action.payload['name']
+            };
+            state.transactions.push(addTrans2);
+            return state;
 
-
-
-        case 'WITHDRAW_MONEY':
-            const I = state.accounts.findIndex(char => char.id === action.payload);
-            state.accounts[I].balance =  action.payload.amount - state.accounts[I].balance;
-            return sortAccounts(state);
+        case 'WITHDRAW_2':
+            var Trans2 = {
+                "_id": state.transactions.length, "accountId": action.payload['accountId'], "type": action.payload['type'], "amount": action.payload['amount'], "name": action.payload['name']
+            };
+            state.transactions.push(Trans2);
+            return state;
 
         default:
             return !state ? sortAccounts( DEFAULT_STATE) : state;

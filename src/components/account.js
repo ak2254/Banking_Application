@@ -4,27 +4,53 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom'
 import {getAccountsByID} from '../reducers/accountsreducer'
-import {addAccount, addMoney, widhraw} from "../actions";
+import {addAccount, addMoney, widhraw, addmoney2, widraw2, editAccount} from "../actions";
 import Form from 'react-bootstrap/Form'
 import Table from "react-bootstrap/Table";
+import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
 
 
 class account extends React.Component {
+    state = {
+        account: [],
+    }
+
+    componentDidMount() {
+        this.getData();
+    }
+
+    getData() {
+        const id = (this.props.match.params.id) - 1;
+        this.props.addMoney(this.state.amount, this.props.match.params.id);
+        axios.get('https://my-json-server.typicode.com/bnissen24/project2DB/accounts')
+            .then(response => {
+                this.setState({account: response.data[id]});
+            });
 
 
-
+    }
 
     onAddMoneySubmit = (event) => {
+
         event.preventDefault();
 
-        this.props.addMoney(this.props.match.params.id, this.state.amount);
-        this.setState({id: this.props.match.params.id, amount: ''});
+        this.props.addMoney(this.state.amount, this.props.match.params.id);
+        this.props.addmoney2(this.state.accountId, this.state.amount);
+        this.setState({accountId:'' , amount: ''});
+
     }
     onwidMoneySubmit = (event) => {
         event.preventDefault();
-        this.props.widhraw(this.props.match.params.id, this.state.amount);
-        this.setState({id: this.props.match.params.id, amount: ''});
+        this.props.widraw2(this.state.accountId, this.state.amount);
+        this.setState({accountId:'' , amount: ''});
     }
+    onNameSubmit = (event) => {
+        event.preventDefault();
+        this.props.editAccount(this.state.NewAccountName, this.props.match.params.id);
+        this.setState({ NewAccountName: '' });
+    }
+
 
     renderList() {
         let trans = this.props.transactions;
@@ -60,7 +86,7 @@ class account extends React.Component {
             }
         });
 
-        return acct.map(char => (
+        return(
 
 
                 <div>
@@ -77,16 +103,20 @@ class account extends React.Component {
                         marginTop: '40px',
                         color: '#301592',
                         fontWeight: 'bold'
-                    }}> Name: {char.name} </h3>
+                    }}> Name: {acct[0].name} </h3>
                     <h3 style={{textAlign: 'center', marginTop: '40px', color: '#301592', fontWeight: 'bold'}}> Acount
-                        Balance: {char.balance} </h3>
-                    <h4 style={{textAlign: 'center', marginTop: '100px', color: '#301592', fontWeight: 'bold'}}> Deposit
+                        Balance: {acct[0].balance} </h3>
+                    <Container style={{display: 'flex'}}>
+                    <h4 style={{marginLeft:'180px', marginTop: '50px',color: '#301592', fontWeight: 'bold'}}> Deposit
                         Money</h4>
 
-                    <Form onSubmit={this.onAddMoneySubmit}>
+                    <Form onSubmit={this.onAddMoneySubmit} style={{marginLeft: '20px', marginTop:'50px'}}>
                         <Form.Group>
+                            <h4 style={{fontWeight: 'bold', fontSize: '20px'}}> Enter ID</h4>
+                            <input placeholder="Enter the Account ID" id="accountId"
+                                          onChange={(e) => this.setState({accountId: e.target.value})}/>
                             <h4 style={{fontWeight: 'bold', fontSize: '20px', textAlign: 'left'}}> Enter Amount</h4>
-                            <Form.Control placeholder="Enter the Amount to Deposit" id="balance"
+                            <input placeholder="Enter the Amount" id="balance"
                                           onChange={(e) => this.setState({amount: e.target.value})}/>
 
 
@@ -103,16 +133,19 @@ class account extends React.Component {
                             border: '3px solid white'
                         }} className="btn btn-success" value={`Add Deposit`}/>
                     </Form>
+                    </Container>
+                    <Container style={{display: 'flex'}} >
 
-
-
-                    <h4 style={{textAlign: 'center', marginTop: '100px', color: '#301592', fontWeight: 'bold'}}> Withdraw
+                    <h4 style={{marginLeft:'180px', marginTop: '50px',color: '#301592', fontWeight: 'bold'}}> Withdraw
                         Money</h4>
 
-                    <Form onSubmit={this.onwidMoneySubmit}>
+                    <Form onSubmit={this.onwidMoneySubmit} style={{marginLeft: '20px', marginTop:'50px'}}>
                         <Form.Group>
+                            <h4 style={{fontWeight: 'bold', fontSize: '20px', textAlign: 'left'}}> Enter ID</h4>
+                            <input placeholder="Enter the Acount ID" id="accountId"
+                                          onChange={(e) => this.setState({accountId: e.target.value})}/>
                             <h4 style={{fontWeight: 'bold', fontSize: '20px', textAlign: 'left'}}> Enter Amount</h4>
-                            <Form.Control placeholder="Enter the Amount to Deposit" id="amount"
+                            <input placeholder="Enter the Amount" id="balance"
                                           onChange={(e) => this.setState({amount: e.target.value})}/>
 
 
@@ -129,6 +162,33 @@ class account extends React.Component {
                             border: '3px solid white'
                         }} className="btn btn-success" value={`Withdraw Money`}/>
                     </Form>
+                    </Container>
+                    <Container style={{display: 'flex'}} >
+
+                        <h4 style={{marginLeft:'180px', marginTop: '50px',color: '#301592', fontWeight: 'bold'}}> Edit Account Name</h4>
+
+                        <Form onSubmit={this.onNameSubmit} style={{marginLeft: '20px', marginTop:'50px'}}>
+                            <Form.Group>
+
+                                <h4 style={{fontWeight: 'bold', fontSize: '20px', textAlign: 'left'}}> Enter Name</h4>
+                                <input placeholder="Enter name" id="name"
+                                       onChange={(e) => this.setState({NewAccountName: e.target.value})}/>
+
+
+                            </Form.Group>
+
+
+                            <input type="submit" style={{
+                                float: 'center',
+                                alignContent: 'center',
+                                padding: '10px',
+                                color: 'white',
+                                borderRadius: '35px',
+                                background: '#301592',
+                                border: '3px solid white'
+                            }} className="btn btn-success" value={`Edit Name`}/>
+                        </Form>
+                    </Container>
 
                     <h1 style={{textAlign: 'center', margin: '40px', color: '#301592', fontWeight: 'bold'}}> List of All
                         Transactions</h1>
@@ -150,7 +210,7 @@ class account extends React.Component {
                     </Table>
                 </div>
             )
-        )
+
 
 
     }
@@ -170,5 +230,5 @@ const mapStateToProps = state => {
 
     };
 };
-export default connect(mapStateToProps, { addMoney, widhraw})(account);
+export default connect(mapStateToProps, { addMoney, widraw2, addmoney2, editAccount})(account);
 
