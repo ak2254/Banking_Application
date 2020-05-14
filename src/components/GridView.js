@@ -4,7 +4,7 @@ import React from 'react';
 import Container from 'react-bootstrap/Container'
 import Card from "react-bootstrap/Card";
 import Row from 'react-bootstrap/Container'
-import  {removeAcct} from '../actions/index.js'
+import  {removeAcct} from '../actions'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -53,7 +53,7 @@ class GirdView extends React.Component {
     const accts= this.renderList();
     return(
     <div>
-      <img  src={require('./unnamed.jpg')} alt="Logo" width="99%" height="430" />
+      <img src={require('./unnamed.jpg')} alt="Logo" width="99%" height="430" />
       <h3 style={{textAlign:'center', fontSize: '50px', margin: '10px',  color: '#301592', fontWeight: 'bold'}}>WELCOME</h3>
       <p style={{textAlign:'center', fontSize: '25px', margin: '10px', fontWeight: 'bold'}}>View Accounts overview below</p>
       <Container style={{display: 'flex', flexDirection: 'row'}}>

@@ -46,11 +46,11 @@ export const widhraw = (accountid, balance) => {
 
   };
 };
-export const addMoney = (accountid, balance) => {
+export const addMoney = (_id, amount) => {
   return {
     type: 'ADD_MONEY',
     payload: {
-      accountid, balance
+      _id, amount
 
     }
 

@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form'
 
 import button from 'react-bootstrap/Form'
 
-import  {removeAcct} from '../actions/index.js'
+import  {removeAcct} from '../actions'
 import {connect} from "react-redux";
 
 

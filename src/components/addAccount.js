@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form'
 
 import button from 'react-bootstrap/Form'
 
-import  {addAccount} from '../actions/index.js'
+import  {addAccount} from '../actions'
 import {connect} from "react-redux";
 
 class AddAccount extends React.Component {
