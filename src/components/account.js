@@ -12,30 +12,13 @@ import Container from "react-bootstrap/Container";
 
 
 class account extends React.Component {
-    state = {
-        account: [],
-    }
 
-    componentDidMount() {
-        this.getData();
-    }
-
-    getData() {
-        const id = (this.props.match.params.id) - 1;
-        this.props.addMoney(this.state.amount, this.props.match.params.id);
-        axios.get('https://my-json-server.typicode.com/bnissen24/project2DB/accounts')
-            .then(response => {
-                this.setState({account: response.data[id]});
-            });
-
-
-    }
 
     onAddMoneySubmit = (event) => {
 
         event.preventDefault();
 
-        this.props.addMoney(this.state.amount, this.props.match.params.id);
+        this.props.addMoney(this.props.match.params.id, this.state.amount);
         this.props.addmoney2(this.state.accountId, this.state.amount);
         this.setState({accountId:'' , amount: ''});
 
