@@ -69,13 +69,13 @@ const accountsReducer = (state, action) => {
       return sortAccounts(state);
     case 'ADD_MONEY':
       let Index= state.accounts.findIndex(char => char._id == action.payload.id);
-      state.accounts[Index].balance = parseInt(state[Index].balance) + parseInt(action.payload['amount']);
+      state.accounts[Index].balance = parseInt(state.accounts[Index].balance) + parseInt(action.payload['amount']);
 
 
       return sortAccounts(state);
     case 'WITHDRAW_MONEY':
-      const i = state.accounts.findIndex(char => char.id === action.payload['accountID']);
-      state.accounts[i]["balance"] = parseInt(state.accounts[i].balance) - parseInt(action.payload.amount);
+      let I= state.accounts.findIndex(char => char._id == action.payload.id);
+      state.accounts[I].balance = parseInt(state.accounts[I].balance) - parseInt(action.payload['amount']);
 
       return sortAccounts(state);
 

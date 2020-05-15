@@ -62,11 +62,11 @@ export const removeAcct = (accountID) => {
   }
 };
 
-export const widhraw = (accountid, balance) => {
+export const widhraw = (id, amount) => {
   return {
     type: 'WITHDRAW_MONEY',
     payload: {
-      accountid, balance
+      amount, id
 
     }
 

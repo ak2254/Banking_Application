@@ -4,7 +4,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom'
 import {getAccountsByID} from '../reducers/accountsreducer'
-import {addAccount, addMoney, widhraw, addmoney2, widraw2, editAccount} from "../actions";
+import {addAccount, addMoney, widhraw, addmoney2, widraw2, editAccount, removeAcct} from "../actions";
 import Form from 'react-bootstrap/Form'
 import Table from "react-bootstrap/Table";
 import Card from "react-bootstrap/Card";
@@ -25,6 +25,7 @@ class account extends React.Component {
     }
     onwidMoneySubmit = (event) => {
         event.preventDefault();
+        this.props.widhraw(this.props.match.params.id, this.state.amount);
         this.props.widraw2(this.state.accountId, this.state.amount);
         this.setState({accountId:'' , amount: ''});
     }
@@ -173,6 +174,13 @@ class account extends React.Component {
                         </Form>
                     </Container>
 
+                    <button type='button'
+                            onClick={() => { this.props.removeAcct(this.props.match.params.id ) }}
+                            className='btn btn-danger'
+                            style={{  paddingTop: '10px', paddingBottom: '10px', paddingRight: '20px', paddingLeft: '20px',marginTop:'50px',marginLeft:'350px', color: 'white', borderRadius: '35px' }}>
+                        Delete
+                    </button>
+
                     <h1 style={{textAlign: 'center', margin: '40px', color: '#301592', fontWeight: 'bold'}}> List of All
                         Transactions</h1>
 
@@ -213,5 +221,5 @@ const mapStateToProps = state => {
 
     };
 };
-export default connect(mapStateToProps, { addMoney, widraw2, addmoney2, editAccount})(account);
+export default connect(mapStateToProps, { addMoney, widraw2, addmoney2, editAccount,widhraw, removeAcct})(account);
 
