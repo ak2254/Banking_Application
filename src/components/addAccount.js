@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-
+import '../css/addacct.css';
 import Form from 'react-bootstrap/Form'
 
 
@@ -22,24 +22,47 @@ class AddAccount extends React.Component {
     render() {
         return (
             <div>
-                <h1 style={{ textAlign: 'center', marginTop:'40px' , color: '#301592', fontWeight:'bold'}}> Add New Account </h1>
+
+                    <div className="requirement">
+                        <h3>Requirement 4</h3>
+                        <h2>Add New Account</h2>
+
+
+                    </div>
+            <div class="form-style">
+
                 <Form onSubmit={this.onFormSubmit}>
                     <Form.Group controlId="formBasicEmail">
-                        <Form.Label style={{fontWeight:'bold', fontSize: '20px' }}>Name</Form.Label>
+                        <Form.Label class='p-style'>Name</Form.Label>
                         <Form.Control  placeholder="Enter Name"  value={this.state.name}
                                        onChange={(e) => this.setState({ name: e.target.value })}/>
 
                     </Form.Group>
 
                     <Form.Group controlId="formBasicPassword">
-                        <Form.Label style={{fontWeight:'bold', fontSize: '20px' }}>Balance</Form.Label>
+                        <Form.Label class='p-style'>Balance</Form.Label>
                         <Form.Control placeholder="Enter Balance" value={this.state.balance}
                                       onChange={(e) => this.setState({ balance: e.target.value })} />
                     </Form.Group>
 
 
-                    <input type="submit" style={{ float: 'center', padding: '10px', color: 'white', borderRadius: '35px', background:'#301592', border:'3px solid white' }} className="btn btn-success" value={ `Add Account ` } />
+                    <input type="submit" style={{  textAlign:'center', padding: '7px 12px', background:'cadetblue', border:'1px solid cadetblue',color: '#fff', letterSpacing: '1px',fontSize:'10px', boxShadow: '0 2px 20px rgba(0,0,0, 0.4)',
+                        textTransform: 'uppercase', textDecoration: 'none' }} className="btn btn-success" value={ `Add Account ` } />
                 </Form>
+            </div>
+                <footer>
+                    <div className="fotter">
+                        <div>Anjali Kumari</div>
+                        <div>(732)-797-8419</div>
+                        <div>ak2254@njit.edu</div>
+
+
+                    </div>
+                </footer>
+
+
+
+
             </div>
 
         )

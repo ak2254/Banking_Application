@@ -23,10 +23,16 @@ class DeleteAccount extends React.Component {
     render() {
         return (
             <div>
-                <h1 style={{ textAlign: 'center', marginTop:'40px' , color: '#301592', fontWeight:'bold'}}> Delete Account </h1>
+                <div className="requirement">
+                    <h3>Requirement </h3>
+                    <h2>delete account</h2>
+
+
+                </div>
+                <div class="form-style">
                 <Form onSubmit={this.onFormSubmit}>
                     <Form.Group controlId="formBasicEmail">
-                        <Form.Label style={{fontWeight:'bold', fontSize: '20px' }}> Enter Id</Form.Label>
+                        <Form.Label > Enter Id</Form.Label>
                         <Form.Control  placeholder="Enter ID"  value={this.state._id}
                                        onChange={(e) => this.setState({ accountID: e.target.value })}/>
 
@@ -34,8 +40,22 @@ class DeleteAccount extends React.Component {
 
 
 
-                    <input type="submit" style={{ float: 'center', padding: '10px', color: 'white', borderRadius: '35px', background:'#301592', border:'3px solid white' }} className="btn btn-success" value={ `Delete Account ` } />
+                    <input type="submit" style={{  textAlign:'center', padding: '7px 12px', background:'cadetblue', border:'1px solid cadetblue',color: '#fff', letterSpacing: '1px',fontSize:'10px', boxShadow: '0 2px 20px rgba(0,0,0, 0.4)',
+                        textTransform: 'uppercase', textDecoration: 'none' }}  className="btn btn-success" value={ `Delete Account ` } />
                 </Form>
+            </div>
+
+                <footer>
+                    <div className="fotter">
+                        <div>Anjali Kumari</div>
+                        <div>(732)-797-8419</div>
+                        <div>ak2254@njit.edu</div>
+
+
+                    </div>
+                </footer>
+
+
             </div>
 
         );

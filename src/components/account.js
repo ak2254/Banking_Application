@@ -1,4 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../css/account-page.css';
+import '../css/tanslist.css';
+
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
@@ -8,6 +11,7 @@ import {addAccount, addMoney, widhraw, addmoney2, widraw2, editAccount, removeAc
 import Form from 'react-bootstrap/Form'
 import Table from "react-bootstrap/Table";
 import Card from "react-bootstrap/Card";
+
 import Container from "react-bootstrap/Container";
 
 
@@ -47,8 +51,8 @@ class account extends React.Component {
         return accttrans.map(char => {
             return (
                 <tbody>
-                <tr style={{backgroundColor: 'white', fontWeight: 'bold'}}>
-                    <td style={{backgroundColor: '#301592', fontWeight: 'bold', color: 'white'}}>{char._id}</td>
+                <tr  >
+                    <td class="text-style">{char._id}</td>
                     <td> {char.accountId}</td>
                     <td> {char.type}</td>
                     <td> {char.amount}</td>
@@ -74,32 +78,31 @@ class account extends React.Component {
 
 
                 <div>
-                    <h2 style={{textAlign: 'center', marginTop: '40px', color: '#301592', fontWeight: 'bold'}}> This is the
-                        Acount's full detail</h2>
-                    <h3 style={{
-                        textAlign: 'center',
-                        marginTop: '40px',
-                        color: '#301592',
-                        fontWeight: 'bold'
-                    }}> ID: {this.props.match.params.id}</h3>
-                    <h3 style={{
-                        textAlign: 'center',
-                        marginTop: '40px',
-                        color: '#301592',
-                        fontWeight: 'bold'
-                    }}> Name: {acct[0].name} </h3>
-                    <h3 style={{textAlign: 'center', marginTop: '40px', color: '#301592', fontWeight: 'bold'}}> Acount
-                        Balance: {acct[0].balance} </h3>
-                    <Container style={{display: 'flex'}}>
-                    <h4 style={{marginLeft:'180px', marginTop: '50px',color: '#301592', fontWeight: 'bold'}}> Deposit
-                        Money</h4>
+                    <div className="requirement">
+                        <h3>Requirement 3</h3>
+                        <h2>the Account's detail</h2>
+
+
+                    </div>
+
+
+
+
+                    <h2 class="account-detail"> ID: {this.props.match.params.id}</h2>
+                    <h2 class="account-detail"> Name: {acct[0].name} </h2>
+                    <h2 class="account-detail"> Acount
+                        Balance: {acct[0].balance} </h2>
+                    <Container>
+                    <h3 class='money' > Deposit
+                        Money</h3>
+                        <div className="Form-edit">
 
                     <Form onSubmit={this.onAddMoneySubmit} style={{marginLeft: '20px', marginTop:'50px'}}>
                         <Form.Group>
-                            <h4 style={{fontWeight: 'bold', fontSize: '20px'}}> Enter ID</h4>
+                            <h4 class="id-name"> Enter ID</h4>
                             <input placeholder="Enter the Account ID" id="accountId"
                                           onChange={(e) => this.setState({accountId: e.target.value})}/>
-                            <h4 style={{fontWeight: 'bold', fontSize: '20px', textAlign: 'left'}}> Enter Amount</h4>
+                            <h4 class="id-name"> Enter Amount</h4>
                             <input placeholder="Enter the Amount" id="balance"
                                           onChange={(e) => this.setState({amount: e.target.value})}/>
 
@@ -107,28 +110,23 @@ class account extends React.Component {
                         </Form.Group>
 
 
-                        <input type="submit" style={{
-                            float: 'center',
-                            alignContent: 'center',
-                            padding: '10px',
-                            color: 'white',
-                            borderRadius: '35px',
-                            background: '#301592',
-                            border: '3px solid white'
-                        }} className="btn btn-success" value={`Add Deposit`}/>
+                        <input type="submit" style={{  textAlign:'center', padding: '7px 12px', background:'cadetblue', border:'1px solid cadetblue',color: '#fff', letterSpacing: '1px',fontSize:'10px', boxShadow: '0 2px 20px rgba(0,0,0, 0.4)',
+                            textTransform: 'uppercase', textDecoration: 'none' }} className="btn btn-success" value={`Add Deposit`}/>
                     </Form>
+                        </div>
                     </Container>
-                    <Container style={{display: 'flex'}} >
+                    <Container  >
 
-                    <h4 style={{marginLeft:'180px', marginTop: '50px',color: '#301592', fontWeight: 'bold'}}> Withdraw
-                        Money</h4>
+                    <h3 class='money'> Withdraw
+                        Money</h3>
+                        <div class="Form-edit">
 
-                    <Form onSubmit={this.onwidMoneySubmit} style={{marginLeft: '20px', marginTop:'50px'}}>
+                    <Form onSubmit={this.onwidMoneySubmit} >
                         <Form.Group>
-                            <h4 style={{fontWeight: 'bold', fontSize: '20px', textAlign: 'left'}}> Enter ID</h4>
+                            <h4 class="id-name"> Enter ID</h4>
                             <input placeholder="Enter the Acount ID" id="accountId"
                                           onChange={(e) => this.setState({accountId: e.target.value})}/>
-                            <h4 style={{fontWeight: 'bold', fontSize: '20px', textAlign: 'left'}}> Enter Amount</h4>
+                            <h4 class="id-name"> Enter Amount</h4>
                             <input placeholder="Enter the Amount" id="balance"
                                           onChange={(e) => this.setState({amount: e.target.value})}/>
 
@@ -136,25 +134,19 @@ class account extends React.Component {
                         </Form.Group>
 
 
-                        <input type="submit" style={{
-                            float: 'center',
-                            alignContent: 'center',
-                            padding: '10px',
-                            color: 'white',
-                            borderRadius: '35px',
-                            background: '#301592',
-                            border: '3px solid white'
-                        }} className="btn btn-success" value={`Withdraw Money`}/>
+                        <input type="submit" style={{  textAlign:'center', padding: '7px 12px', background:'cadetblue', border:'1px solid cadetblue',color: '#fff', letterSpacing: '1px',fontSize:'10px', boxShadow: '0 2px 20px rgba(0,0,0, 0.4)',
+                            textTransform: 'uppercase', textDecoration: 'none' }} className="btn btn-success" value={`Withdraw Money`}/>
                     </Form>
+                        </div>
                     </Container>
-                    <Container style={{display: 'flex'}} >
+                    <Container  >
 
-                        <h4 style={{marginLeft:'180px', marginTop: '50px',color: '#301592', fontWeight: 'bold'}}> Edit Account Name</h4>
-
-                        <Form onSubmit={this.onNameSubmit} style={{marginLeft: '20px', marginTop:'50px'}}>
+                        <h3 class='money'> Edit Account Name</h3>
+                        <div className="Form-edit">
+                        <Form onSubmit={this.onNameSubmit} >
                             <Form.Group>
 
-                                <h4 style={{fontWeight: 'bold', fontSize: '20px', textAlign: 'left'}}> Enter Name</h4>
+                                <h4 class="id-name"> Enter Name</h4>
                                 <input placeholder="Enter name" id="name"
                                        onChange={(e) => this.setState({NewAccountName: e.target.value})}/>
 
@@ -162,43 +154,69 @@ class account extends React.Component {
                             </Form.Group>
 
 
-                            <input type="submit" style={{
-                                float: 'center',
-                                alignContent: 'center',
-                                padding: '10px',
-                                color: 'white',
-                                borderRadius: '35px',
-                                background: '#301592',
-                                border: '3px solid white'
-                            }} className="btn btn-success" value={`Edit Name`}/>
+                            <input type="submit" style={{  textAlign:'center', padding: '7px 12px', background:'cadetblue', border:'1px solid cadetblue',color: '#fff', letterSpacing: '1px',fontSize:'10px', boxShadow: '0 2px 20px rgba(0,0,0, 0.4)',
+                                textTransform: 'uppercase', textDecoration: 'none' }} className="btn btn-success" value={`Edit Name`}/>
                         </Form>
+                        </div>
                     </Container>
 
-                    <button type='button'
-                            onClick={() => { this.props.removeAcct(this.props.match.params.id ) }}
-                            className='btn btn-danger'
-                            style={{  paddingTop: '10px', paddingBottom: '10px', paddingRight: '20px', paddingLeft: '20px',marginTop:'50px',marginLeft:'350px', color: 'white', borderRadius: '35px' }}>
-                        Delete
-                    </button>
 
-                    <h1 style={{textAlign: 'center', margin: '40px', color: '#301592', fontWeight: 'bold'}}> List of All
-                        Transactions</h1>
+                    <div className="delete-bt">
+                        <button type='button'
+                                onClick={() => {
+                                    this.props.removeAcct(this.props.match.params.id)
+                                }}
+                                className='btn btn-danger'
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignContent: 'center',
+                                    textAlign: 'center',
+                                    padding: '7px 12px',
+                                    color: '#fff',
+                                    fontSize: '10px',
+                                    letterSpacing: '1px',
+                                    textTransform: 'uppercase',
+                                    background: 'grey',
+                                    borderColor: 'grey',
+                                    boxShadow: '0 2px 20px rgba(0,0,0, 0.4)',
+                                    marginLeft: '45%',
+                                    marginTop:'4rem'
+                                }}>
+
+                            Delete
+                        </button>
+                    </div>
 
 
-                    <Table style={{margin: '10'}} striped bordered hover>
+                    <h2 class="trans-list"> List of All
+                        Transactions</h2>
+
+
+                    <Table style={{marginTop:'30px', marginBottom:'40px'}} striped bordered hover>
 
                         <thead>
-                        <tr style={{backgroundColor: '#301592', fontWeight: 'bold', color: 'white'}}>
-                            <td>ID</td>
-                            <td>Account ID</td>
-                            <td>Type of Transaction</td>
-                            <td>Amount</td>
-                            <td>Name</td>
+                        <tr class="text-style">
+                            <td >ID</td>
+                            <td class="text-style">Account ID</td>
+                            <td class="text-style">Type of Transaction</td>
+                            <td class="text-style">Amount</td>
+                            <td class="text-style">Name</td>
 
                         </tr>
                         </thead>
                         {trans}
                     </Table>
+                    <footer>
+                        <div className="fotter">
+                            <div>Anjali Kumari</div>
+                            <div>(732)-797-8419</div>
+                            <div>ak2254@njit.edu</div>
+
+
+                        </div>
+                    </footer>
+
                 </div>
             )
 

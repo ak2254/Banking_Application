@@ -15,6 +15,7 @@ import ListView from "./translist";
 import { setAccounts, settransactions } from "../actions";
 import account from "./account"
 
+
 class App extends React.Component {
   state = { view: 'Home',
     errorText: ''
@@ -24,7 +25,7 @@ class App extends React.Component {
     this.getData();
   }
   getData() {
-    axios.get('http://my-json-server.typicode.com/bnissen24/project2DB/accounts')
+    axios.get('https://my-json-server.typicode.com/bnissen24/project2DB/accounts')
         .then(response => {
           this.props.setAccounts(response.data);
 
@@ -61,11 +62,11 @@ class App extends React.Component {
           <BrowserRouter>
             <PageTabs />
             <div>
-              <Route path="/" exact component={GridView} />
-              <Route path="/deleteAccount" component={DeleteAccount} />
-              <Route path="/AddAccount" component={AddAccount} />
-              <Route path="/ListView" component={ListView} />
-                <Route path="/account/:id" component={account} />
+              <Route path="/~ak2254/banking/build/" exact component={GridView} />
+              <Route path="/~ak2254/banking/build/deleteAccount" component={DeleteAccount} />
+              <Route path="/~ak2254/banking/build/AddAccount" component={AddAccount} />
+              <Route path="/~ak2254/banking/build/ListView" component={ListView} />
+                <Route path="/~ak2254/banking/build/account/:id" component={account} />
 
             </div>
           </BrowserRouter>

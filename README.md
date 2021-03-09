@@ -1,3 +1,11 @@
+<h1>BANKING APPLICATION</h1>
+
+<p>This project requires you to make a basic banking application that follows the requirements below. It consists of a list of accounts and their current balance (stored in Redux). A list of transactions for all modifications made to the balance of each account (also stored in redux). Lastly, it consists of ways to deposit and withdraw money, as well as add and delete existing accounts.</p>
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
